@@ -36,3 +36,6 @@ yarn-error.*
 
 # Ignorar firebaseConfig
 firebaseConfig.ts
+
+# Ignorar variables de entorno
+.env
