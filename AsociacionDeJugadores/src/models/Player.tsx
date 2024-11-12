@@ -1,12 +1,19 @@
 export interface Player {
     id: string;
     name: string;
+    surname: string;
+    document: string;
     age: number;
-    gender: 'Male' | 'Female';
+    birth: string;
+    gender: 'Masculino' | 'Femenino';
     contact: {
       email: string;
       phone: string;
     };
-    teamId: string;
+    city: string;
+    province: string;
+    team: string;
+    isDelegate: boolean;
+    category: string;
   }
   

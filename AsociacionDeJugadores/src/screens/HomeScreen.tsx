@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { HomeScreenProps } from '../types/navigation';
+import { HomeScreenNavigationProp } from '../types/navigation';
 import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen: React.FC<HomeScreenProps> = () => {
-  const navigation = useNavigation<HomeScreenProps['navigation']>();
+function HomeScreen() {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
   useEffect(() => {
     console.log('HomeScreen rendered');
   }, []);
@@ -18,17 +18,15 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       <Text style={styles.title}>Gestión de Jugadores</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => {
-          showAlert('Navigating to PlayerList');
-          navigation.navigate('PlayerScreen');
-        }}
+        onPress={() =>
+          navigation.navigate('PlayerScreen')
+        }
       >
         <Text style={styles.buttonText}>Lista de Jugadores</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          showAlert('Navigating to PlayerForm');
           navigation.navigate('PlayerForm');
         }}
       >
@@ -37,7 +35,6 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          showAlert('Navigating to TeamList');
           navigation.navigate('TeamList');
         }}
       >
@@ -46,7 +43,6 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          showAlert('Navigating to TeamForm');
           navigation.navigate('TeamForm');
         }}
       >

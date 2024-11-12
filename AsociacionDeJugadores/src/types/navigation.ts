@@ -5,18 +5,15 @@ export type RootStackParamList = {
   PlayerScreen: undefined;
   PlayerList: undefined;
   PlayerForm: undefined;
+  TeamScreen: undefined;
   TeamList: undefined;
   TeamForm: undefined;
 };
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
-type PlayerScreenNavigationProp = StackNavigationProp<RootStackParamList, "PlayerScreen">;
-type PlayerFormNavigationProp = StackNavigationProp<RootStackParamList, "PlayerForm">;
-type TeamListNavigationProp = StackNavigationProp<RootStackParamList, "TeamList">;
-type TeamFormNavigationProp = StackNavigationProp<RootStackParamList, "TeamForm">;
-
-export type HomeScreenProps = { navigation: HomeScreenNavigationProp };
-export type PlayerScreenProps = { navigation: PlayerScreenNavigationProp };
-export type PlayerFormProps = { navigation: PlayerFormNavigationProp };
-export type TeamListProps = { navigation: TeamListNavigationProp };
-export type TeamFormProps = { navigation: TeamFormNavigationProp };
+export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
+export type PlayerScreenNavigationProp = StackNavigationProp<RootStackParamList, "PlayerScreen">;
+export type PlayerFormNavigationProp = StackNavigationProp<RootStackParamList, "PlayerForm">;
+export type PlayerListNavigationProp = StackNavigationProp<RootStackParamList, "PlayerList">;
+export type TeamScreenNavigationProp = StackNavigationProp<RootStackParamList, "TeamScreen">;
+export type TeamListNavigationProp = StackNavigationProp<RootStackParamList, "TeamList">;
+export type TeamFormNavigationProp = StackNavigationProp<RootStackParamList, "TeamForm">;

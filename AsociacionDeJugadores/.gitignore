@@ -33,3 +33,6 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Ignorar firebaseConfig
+firebaseConfig.ts
