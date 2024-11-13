@@ -6,6 +6,7 @@ import PlayerScreen from './screens/PlayerScreen';
 import PlayerForm from './components/PlayerForm';
 import { RootStackParamList } from './types/navigation';
 import TeamScreen from './screens/TeamScreen';
+import PLayerDetails from "./components/PlayerDetails";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -17,6 +18,7 @@ const AppNavigator = () => {
         <Stack.Screen name="PlayerScreen" component={PlayerScreen} options={{ title: 'Jugadores' }} />
         <Stack.Screen name="PlayerForm" component={PlayerForm} options={{ title: 'Añadir Jugador' }} />
         <Stack.Screen name="TeamScreen" component={TeamScreen} options={{ title: 'Equipos' }} />
+        <Stack.Screen name='PlayerDetails' component={PLayerDetails} options={{title: 'Detalles'}}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

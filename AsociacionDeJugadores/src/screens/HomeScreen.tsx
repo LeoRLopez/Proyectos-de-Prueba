@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { HomeScreenNavigationProp } from '../types/navigation';
 import { useNavigation } from '@react-navigation/native';
 
-function HomeScreen() {
+const HomeScreen = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   useEffect(() => {
     console.log('HomeScreen rendered');
   }, []);
-
-  const showAlert = (message: string) => {
-    Alert.alert('Navigating', message);
-  };
 
   return (
     <View style={styles.container}>

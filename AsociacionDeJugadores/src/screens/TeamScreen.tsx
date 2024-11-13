@@ -4,7 +4,7 @@ import { TeamScreenNavigationProp } from '../types/navigation';
 import { useNavigation } from '@react-navigation/native';
 // Importa el componente de lista de equipos cuando esté listo
 
-const TeamScreen: React.FC = () => {
+const TeamScreen = () => {
   const navigation = useNavigation<TeamScreenNavigationProp>();
 
   return (

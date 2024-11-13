@@ -15,5 +15,6 @@ export interface Player {
     team: string;
     isDelegate: boolean;
     category: string;
+    address: string;
   }
   

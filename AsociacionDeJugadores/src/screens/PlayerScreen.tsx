@@ -4,16 +4,16 @@ import PlayerList from '../components/PlayerList';
 import { useNavigation } from '@react-navigation/native';
 import { PlayerScreenNavigationProp } from '../types/navigation'
 
-function PlayerScreen () {
+const PlayerScreen = () => {
   const navigation = useNavigation<PlayerScreenNavigationProp>();
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Lista de Jugadores</Text>
       <PlayerList />
-      <Button 
-        title="Añadir Jugador" 
-        onPress={() => navigation.navigate("PlayerForm")} 
+      <Button
+        title="Añadir Jugador"
+        onPress={() => navigation.navigate("PlayerForm")}
       />
     </View>
   );

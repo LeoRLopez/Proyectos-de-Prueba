@@ -1,4 +1,6 @@
 import { StackNavigationProp } from "@react-navigation/stack";
+import { Player } from "../models/Player";
+
 
 export type RootStackParamList = {
   Home: undefined;
@@ -8,6 +10,9 @@ export type RootStackParamList = {
   TeamScreen: undefined;
   TeamList: undefined;
   TeamForm: undefined;
+  PlayerDetails: {
+    player: Player;
+  };
 };
 
 export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -17,3 +22,4 @@ export type PlayerListNavigationProp = StackNavigationProp<RootStackParamList, "
 export type TeamScreenNavigationProp = StackNavigationProp<RootStackParamList, "TeamScreen">;
 export type TeamListNavigationProp = StackNavigationProp<RootStackParamList, "TeamList">;
 export type TeamFormNavigationProp = StackNavigationProp<RootStackParamList, "TeamForm">;
+export type PlayerDetailsNavigationProp = StackNavigationProp<RootStackParamList, "PlayerDetails">;

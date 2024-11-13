@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Button, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { db } from '../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
@@ -180,15 +180,17 @@ const PlayerForm = () => {
     const handleSubmit = async () => {
         try {
             await addDoc(collection(db, 'jugadores'), {
-                name,
-                surname,
+                name: name,
+                surname: surname,
                 age: parseInt(age),
                 document: parseInt(dni),
-                contact: { email, phone },
+                contact: { email:email, phone:phone },
                 city: city,
-                teamId: '',
-                gender: '',
-                isDelegate: isDelegate
+                gender: gender,
+                isDelegate: isDelegate,
+                team: team,
+                category: category,
+                province: province
             });
 
             setName('');
@@ -199,6 +201,10 @@ const PlayerForm = () => {
             setGender('Masculino');
             setIsDelegate(false);
             setDni("");
+            setTeam("");
+            setCategory("");
+            setCity("");
+            setProvince("");
         } catch (e) {
             console.error("Error al insertar el archivo: ", e)
         }
