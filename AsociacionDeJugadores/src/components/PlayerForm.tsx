@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Button, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { db } from '../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
@@ -17,15 +17,15 @@ const PlayerForm = () => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
-    const [province, setProvince] = useState<string>();;
-    const [date, setDate] = useState(new Date());
+    const [province, setProvince] = useState<string>();
+    const [birtday, setBirthday] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
     const [gender, setGender] = useState('Masculino');
     const [isDelegate, setIsDelegate] = useState(false);
     const [category, setCategory] = useState<string>();
     const [team, setTeam] = useState<string>();
-    
+
     const provinces = [
         {
             label: 'Chaco',
@@ -165,7 +165,7 @@ const PlayerForm = () => {
     const onChange = (event: any, selectedDate: any) => {
         const currentDate = selectedDate;
         setShow(false);
-        setDate(currentDate);
+        setBirthday(currentDate);
     };
 
     const showMode = (currentMode: any) => {
@@ -178,36 +178,36 @@ const PlayerForm = () => {
     };
 
     const handleSubmit = async () => {
-        try {
-            await addDoc(collection(db, 'jugadores'), {
-                name: name,
-                surname: surname,
-                age: parseInt(age),
-                document: parseInt(dni),
-                contact: { email:email, phone:phone },
-                city: city,
-                gender: gender,
-                isDelegate: isDelegate,
-                team: team,
-                category: category,
-                province: province
-            });
+            try {
+                await addDoc(collection(db, 'jugadores'), {
+                    name: name,
+                    surname: surname,
+                    age: parseInt(age),
+                    document: parseInt(dni),
+                    contact: { email: email, phone: phone },
+                    city: city,
+                    gender: gender,
+                    isDelegate: isDelegate,
+                    team: team,
+                    category: category,
+                    province: province
+                });
 
-            setName('');
-            setSurame('');
-            setAge('');
-            setEmail('');
-            setPhone('');
-            setGender('Masculino');
-            setIsDelegate(false);
-            setDni("");
-            setTeam("");
-            setCategory("");
-            setCity("");
-            setProvince("");
-        } catch (e) {
-            console.error("Error al insertar el archivo: ", e)
-        }
+                setName('');
+                setSurame('');
+                setAge('');
+                setEmail('');
+                setPhone('');
+                setGender('Masculino');
+                setIsDelegate(false);
+                setDni("");
+                setTeam("");
+                setCategory("");
+                setCity("");
+                setProvince("");
+            } catch (e) {
+                console.error("Error al insertar el archivo: ", e)
+            }
     };
 
     return (
@@ -220,18 +220,26 @@ const PlayerForm = () => {
 
                     <SafeAreaView style={{ alignItems: "center", marginBottom: 6 }}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <Text variant="headlineSmall">{date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()}</Text>
+                            <TextInput
+                                editable={false}
+                                style={styles.textInput}
+                                mode='outlined'
+                                value={birtday.getDate() + "/" + birtday.getMonth() + "/" + birtday.getFullYear() || "dd/MM/AAAA"}
+                                right={<TextInput.Icon
+                                    icon="calendar-month-outline"
+                                    onPress={showDatepicker}>
+                                </TextInput.Icon>} >
+                            </TextInput>
                         </View>
                         {show && (
                             <DateTimePicker
                                 testID="dateTimePicker"
-                                value={date}
+                                value={birtday}
                                 mode={"date"}
                                 is24Hour={true}
                                 onChange={onChange}
                             />
                         )}
-                        <Button onPress={showDatepicker} title="Fecha de nacimiento" />
                     </SafeAreaView>
                     <TextInput style={styles.textInput} mode='outlined' placeholder="Documento" value={dni} onChangeText={setDni} keyboardType="numeric" />
 
@@ -257,7 +265,7 @@ const PlayerForm = () => {
                     <View style={styles.dropdownContainer}>
                         <Dropdown
                             placeholder='Seleccione Provincia'
-                            options={provinces}
+                            options={provinces.sort((a, b) => a.label.localeCompare(b.label))}
                             value={province}
                             onSelect={setProvince}
                             mode='outlined'
@@ -277,7 +285,7 @@ const PlayerForm = () => {
                     <View style={styles.dropdownContainer}>
                         <Dropdown
                             placeholder='Seleccione Categoría'
-                            options={categories}
+                            options={categories.sort()}
                             value={category}
                             onSelect={setCategory}
                             mode='outlined'
@@ -289,7 +297,6 @@ const PlayerForm = () => {
                         <Text style={{ margin: 9 }} variant='titleLarge'>Es Delegado</Text>
                         <Switch value={isDelegate} onValueChange={onToggleSwitch} />
                     </View>
-
                     <View style={styles.buttonSaveContainer}>
                         <Button title="Guardar Jugador" onPress={handleSubmit} />
                     </View>
@@ -322,9 +329,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         paddingBottom: 16,
     },
-    dropdownContainer:{
-        marginTop:2
-    }
+    dropdownContainer: {
+        marginTop: 2
+    },
+    error: {
+        color: 'red',
+        fontSize: 20,
+        marginBottom: 12,
+    },
 });
 
 export default PlayerForm;
