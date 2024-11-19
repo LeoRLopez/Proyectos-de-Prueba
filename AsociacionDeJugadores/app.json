@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "name": "AsociacionDeJugadores",
     "slug": "AsociacionDeJugadores",
     "version": "1.0.0",
